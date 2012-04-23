@@ -2,11 +2,11 @@ import java.io.File;
 import java.util.*;
 
 public class KarmarkarKarp {
-	PriorityQueue<Integer> nums;
+	MaxHeap nums;
 
 	public static void main(String[] args){
-		ArrayList<Integer> a = new ArrayList<Integer>();
-		for (int i=1; i<=7; i++)
+		ArrayList<Long> a = new ArrayList<Long>();
+		for (long i=1; i<=10; i++)
 			a.add(i);
 		KarmarkarKarp test = new KarmarkarKarp(a);
 		System.out.println(test.residue());
@@ -23,35 +23,30 @@ public class KarmarkarKarp {
 			System.out.println("No such file!");
 			return;
 		}
-		nums=new PriorityQueue<Integer>(100, new Comp());
+		nums=new MaxHeap(100);
 		for (int i=0; i<100; i++){
-			nums.add(in.nextInt());
+			nums.add(in.nextLong());
 		}
 	}
 	/*
 	 * Makes a new KarmarkarKarp from any collection
 	 */
-	public KarmarkarKarp(Collection<Integer> c){
-		nums = new PriorityQueue<Integer>(1, new Comp());
-		Iterator<Integer> i = c.iterator();
+	public KarmarkarKarp(Collection<Long> c){
+		nums = new MaxHeap(c.size());
+		Iterator<Long> i = c.iterator();
 		while(i.hasNext()){
 			nums.add(i.next());
 		}
 	}
 	
-	public int residue(){
-		// Always has a greatest element
-		Integer max = nums.poll();
-		Integer next = nums.poll();
-		if (next==null)
-			return max;
-		nums.add(max-next);
-		return residue();
-	}
-}
-
-class Comp implements Comparator<Integer>{
-	public int compare(Integer a, Integer b){
-		return b-a;
+	public long residue(){
+		while(true){
+			// Always has a greatest element
+			Long max = nums.poll();
+			if (nums.is_empty())
+				return max;
+			Long next = nums.poll();				
+			nums.add(max-next);
+		}
 	}
 }
