@@ -9,7 +9,20 @@ public class PrepartitionSolution implements Solution{
 	int[] P;
 	
 	final static Random gen = new Random();
-
+	
+	/*
+	 * Makes a random solution with len many numbers
+	 */
+	public PrepartitionSolution(int len){
+		P = new int[len];
+		// Note that unlike spec, choose numbers from 0 to n-1, not 1 to n
+		for (int i=0; i<len; i++)
+			P[i]=gen.nextInt(nums.length);
+		
+		nums=new long[len];
+		for (int i=0; i<len; i++)
+			nums[i]=gen.nextLong();
+	}
 	
 	/*
 	 * Takes a list of numbers, generates a random solution

@@ -4,13 +4,6 @@ import java.util.*;
 public class KarmarkarKarp {
 	MaxHeap nums;
 
-	public static void main(String[] args){
-		ArrayList<Long> a = new ArrayList<Long>();
-		for (long i=1; i<=10; i++)
-			a.add(i);
-		KarmarkarKarp test = new KarmarkarKarp(a);
-		System.out.println(test.residue());
-	}
 	/*
 	 * Makes a new KarmarkarKarp from a given file
 	 */

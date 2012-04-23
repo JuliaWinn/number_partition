@@ -18,6 +18,24 @@ public class SetSolution implements Solution{
 	final static Random gen = new Random();
 	
 	/*
+	 * Makes a random solution with len many numbers
+	 */
+	public SetSolution(int len){
+		nums=new long[len];
+		for (int i=0; i<len; i++)
+			nums[i]=gen.nextLong();
+		
+		S = new int[nums.length];
+		// Generate random sets
+		for (int i=0; i<S.length; i++)
+			S[i]= gen.nextBoolean() ? 1 : -1;
+		// Calculate the residue
+		residue = 0;
+		for (int i=0; i<nums.length; i++)
+			residue+=S[i]*nums[i];
+	}
+	
+	/*
 	 *  Takes a list of numbers, generates a random solution, calc residue
 	 */
 	public SetSolution(long[] nums){
