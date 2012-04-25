@@ -10,24 +10,27 @@ public class RandomAlgs {
 	 *  iters: how many iterations
 	 *  set_soln: true if using SetSolution, false if PrepartitionSolution
 	 */
-	public static long rep_random(int nums, int iters, long[] numbers){
+	public static long rep_random(boolean set_soln, int iters, long[] numbers){
 		// Generate a random solution, make it the best
-		long best = new SetSolution(numbers).residue();
+		long best = set_soln ? new SetSolution(numbers).residue() : 
+			new PrepartitionSolution(numbers).residue;
 		/*
 		 *  The rest of the iterations: gen a random, and if it improves, make
 		 *  it the best.
 		 */
 		long test;
 		for (int i=1; i<iters; i++){
-            test = new SetSolution(numbers).residue();
+            test = set_soln ? new SetSolution(numbers).residue() : 
+					new PrepartitionSolution(numbers).residue;
 			best = Math.min(best, test);
 		}
 		return best;
 	}
 	
-	public static long hill_climb(int nums, int iters, long[] numbers){
+	public static long hill_climb(boolean set_soln, int iters, long[] numbers){
 		// Remember both the best residue, and the soln which got it
-        Solution best = new SetSolution(numbers);
+        Solution best = set_soln ? new SetSolution(numbers).residue() : 
+			new PrepartitionSolution(numbers).residue;
 		long best_residue = best.residue();
 		
 		Solution test;
@@ -44,9 +47,10 @@ public class RandomAlgs {
 		return best_residue;
 	}
 	
-	public static long sim_annealing(int nums, int iters, long[] numbers){
+	public static long sim_annealing(boolean set_soln, int iters, long[] numbers){
 	    
-		Solution best = new SetSolution(numbers);
+		Solution best = set_soln ? new SetSolution(numbers).residue() : 
+			new PrepartitionSolution(numbers).residue;;
 		Solution current = best;
 		long best_residue = best.residue();
 		long current_residue = best_residue;
@@ -108,11 +112,11 @@ public class RandomAlgs {
         Long b1, b2, b3;
         System.out.println("----------------------");
         for (int i=0; i < 50; i++) {
-            b1 = rep_random(100, 25000, instances[i]);
+            b1 = rep_random(true, 25000, instances[i]);
             System.out.println(b1);
-            b2 = hill_climb(100, 25000, instances[i]);
+            b2 = hill_climb(true, 25000, instances[i]);
             System.out.println(b2);
-            b3 = sim_annealing(100, 25000, instances[i]);
+            b3 = sim_annealing(true, 25000, instances[i]);
             System.out.println(b3);
             // KarmarkarKarp kk = new KarmarkarKarp(instances[i]);
             // Long res2 = kk.residue();
