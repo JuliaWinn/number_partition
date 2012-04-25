@@ -13,7 +13,7 @@ public class RandomAlgs {
 	public static long rep_random(boolean set_soln, int iters, long[] numbers){
 		// Generate a random solution, make it the best
 		long best = set_soln ? new SetSolution(numbers).residue() : 
-			new PrepartitionSolution(numbers).residue;
+			new PrepartitionSolution(numbers).residue();
 		/*
 		 *  The rest of the iterations: gen a random, and if it improves, make
 		 *  it the best.
@@ -21,7 +21,7 @@ public class RandomAlgs {
 		long test;
 		for (int i=1; i<iters; i++){
             test = set_soln ? new SetSolution(numbers).residue() : 
-					new PrepartitionSolution(numbers).residue;
+					new PrepartitionSolution(numbers).residue();
 			best = Math.min(best, test);
 		}
 		return best;
@@ -29,8 +29,8 @@ public class RandomAlgs {
 	
 	public static long hill_climb(boolean set_soln, int iters, long[] numbers){
 		// Remember both the best residue, and the soln which got it
-        Solution best = set_soln ? new SetSolution(numbers).residue() : 
-			new PrepartitionSolution(numbers).residue;
+        Solution best = set_soln ? new SetSolution(numbers) : 
+			new PrepartitionSolution(numbers);
 		long best_residue = best.residue();
 		
 		Solution test;
@@ -49,8 +49,8 @@ public class RandomAlgs {
 	
 	public static long sim_annealing(boolean set_soln, int iters, long[] numbers){
 	    
-		Solution best = set_soln ? new SetSolution(numbers).residue() : 
-			new PrepartitionSolution(numbers).residue;;
+		Solution best = set_soln ? new SetSolution(numbers) : 
+			new PrepartitionSolution(numbers);
 		Solution current = best;
 		long best_residue = best.residue();
 		long current_residue = best_residue;
@@ -120,25 +120,25 @@ public class RandomAlgs {
         for (int i=0; i < 50; i++) {
             prev = System.currentTimeMillis();
             // System.out.println(prev);
-            b1 = rep_random(100, 25000, instances[i]);
+            b1 = rep_random(false, 25000, instances[i]);
             // System.out.println(b1);
             b1 = System.currentTimeMillis();
             System.out.println(b1-prev);
             prev = b1;
-            b2 = hill_climb(100, 25000, instances[i]);
+            b2 = hill_climb(false, 25000, instances[i]);
             b2 = System.currentTimeMillis();
             System.out.println(b2-prev);
             prev = b2;
             // System.out.println(b2);
-            b3 = sim_annealing(100, 25000, instances[i]);
+            b3 = sim_annealing(false, 25000, instances[i]);
             b3 = System.currentTimeMillis();
             System.out.println(b3-prev);
             prev = b3;
             // System.out.println(b3);
-            KarmarkarKarp kk = new KarmarkarKarp(instances[i]);
-            Long res2 = kk.residue();
-            res2 = System.currentTimeMillis();
-            System.out.println(res2-prev);
+            // KarmarkarKarp kk = new KarmarkarKarp(instances[i]);
+            // Long res2 = kk.residue();
+            // res2 = System.currentTimeMillis();
+            // System.out.println(res2-prev);
             // System.out.println(res2);
         }
         System.out.println("----------------------");
