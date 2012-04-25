@@ -111,15 +111,34 @@ public class RandomAlgs {
         // for each instance find the result from kk
         Long b1, b2, b3;
         System.out.println("----------------------");
+        
+        
+        long next;
+        long prev;
+        // int[][] times = new int[50][100];
+        
         for (int i=0; i < 50; i++) {
-            b1 = rep_random(true, 25000, instances[i]);
-            System.out.println(b1);
-            b2 = hill_climb(true, 25000, instances[i]);
-            System.out.println(b2);
-            b3 = sim_annealing(true, 25000, instances[i]);
-            System.out.println(b3);
-            // KarmarkarKarp kk = new KarmarkarKarp(instances[i]);
-            // Long res2 = kk.residue();
+            prev = System.currentTimeMillis();
+            // System.out.println(prev);
+            b1 = rep_random(100, 25000, instances[i]);
+            // System.out.println(b1);
+            b1 = System.currentTimeMillis();
+            System.out.println(b1-prev);
+            prev = b1;
+            b2 = hill_climb(100, 25000, instances[i]);
+            b2 = System.currentTimeMillis();
+            System.out.println(b2-prev);
+            prev = b2;
+            // System.out.println(b2);
+            b3 = sim_annealing(100, 25000, instances[i]);
+            b3 = System.currentTimeMillis();
+            System.out.println(b3-prev);
+            prev = b3;
+            // System.out.println(b3);
+            KarmarkarKarp kk = new KarmarkarKarp(instances[i]);
+            Long res2 = kk.residue();
+            res2 = System.currentTimeMillis();
+            System.out.println(res2-prev);
             // System.out.println(res2);
         }
         System.out.println("----------------------");
