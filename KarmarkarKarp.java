@@ -32,6 +32,15 @@ public class KarmarkarKarp {
 		}
 	}
 	
+	/*
+	 * Makes a new KK from a long list
+	 */
+	public KarmarkarKarp(long[] l){
+		nums = new MaxHeap(l.length);
+		for (int i=0; i<l.length; i++)
+			nums.add(l[i]);
+	}
+	
 	public long residue(){
 		while(true){
 			// Always has a greatest element
