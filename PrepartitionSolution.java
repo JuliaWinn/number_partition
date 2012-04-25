@@ -27,9 +27,9 @@ public class PrepartitionSolution implements Solution{
 	/*
 	 * Takes a list of numbers, generates a random solution
 	 */
-	public PrepartitionSolution(long[] nums){
-		P = new int[nums.length];
-		this.nums=nums;
+	public PrepartitionSolution(long[] numbers){
+		P = new int[numbers.length];
+		nums=numbers;
 		// Note that unlike spec, choose numbers from 0 to n-1, not 1 to n
 		for (int i=0; i<nums.length; i++)
 			P[i]=gen.nextInt(nums.length);
@@ -57,9 +57,9 @@ public class PrepartitionSolution implements Solution{
 	}
 	
 	public long residue(){
-		Long[] sum_by_id = new Long[nums.length];
+		long[] sum_by_id = new long[nums.length];
 		for (int i=0; i<nums.length; i++)
 			sum_by_id[P[i]]+=nums[i];
-		return (new KarmarkarKarp(Arrays.asList(sum_by_id))).residue();
+		return (new KarmarkarKarp(sum_by_id)).residue();
 	}
 }
