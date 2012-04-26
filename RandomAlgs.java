@@ -118,31 +118,31 @@ public class RandomAlgs {
         long prev;
         long c;
         
-        for (int i=0; i < 50; i++) {
-            prev = System.currentTimeMillis();
-            
-            b11 = rep_random(true, 25000, instances[i]);
-            c = System.currentTimeMillis();
-            b1 = c - prev;
-            prev = c;
-            // System.out.println(b11);
-            
-            b21 = hill_climb(true, 25000, instances[i]);
-            c = System.currentTimeMillis();
-            b2 = c - prev;
-            prev = c;
-            // System.out.println(b21);
-            
-            b31 = sim_annealing(true, 25000, instances[i]);
-            c = System.currentTimeMillis();
-            b3 = c - prev;
-            prev = c;
-            // System.out.println(b31);
-            
-            KarmarkarKarp kk = new KarmarkarKarp(instances[i]);
-            Long res2 = kk.residue();
-            c = System.currentTimeMillis();
-            b4 = c - prev;
+        // for (int i=0; i < 50; i++) {
+        //     prev = System.currentTimeMillis();
+        //     
+        //     b11 = rep_random(true, 25000, instances[i]);
+        //     c = System.currentTimeMillis();
+        //     b1 = c - prev;
+        //     prev = c;
+        //     // System.out.println(b11);
+        //     
+        //     b21 = hill_climb(true, 25000, instances[i]);
+        //     c = System.currentTimeMillis();
+        //     b2 = c - prev;
+        //     prev = c;
+        //     // System.out.println(b21);
+        //     
+        //     b31 = sim_annealing(true, 25000, instances[i]);
+        //     c = System.currentTimeMillis();
+        //     b3 = c - prev;
+        //     prev = c;
+        //     // System.out.println(b31);
+        //     
+        //     KarmarkarKarp kk = new KarmarkarKarp(instances[i]);
+        //     Long res2 = kk.residue();
+        //     c = System.currentTimeMillis();
+        //     b4 = c - prev;
             // System.out.println(res2);
             
             // print the run time of each algorithm
