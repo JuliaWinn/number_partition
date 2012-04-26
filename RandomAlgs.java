@@ -82,8 +82,8 @@ public class RandomAlgs {
 	}
 	
     // input file is a list of 100 (unsorted) integers
-	public static void main(String[] args) {
-	    
+    public static void main(String[] args) {
+        
         String filename = args[0];
         KarmarkarKarp first = new KarmarkarKarp(filename);
         Long res = first.residue();
@@ -154,6 +154,10 @@ public class RandomAlgs {
 
         }
         System.out.println("----------------------");
-	}
+    }
+	
+    // public static void main(String[] args){
+    //     
+    // }
 	
 }

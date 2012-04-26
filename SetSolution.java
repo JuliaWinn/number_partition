@@ -13,7 +13,7 @@ public class SetSolution implements Solution{
 	// Each value is 1 or -1, represents sets
 	int[] S;
 	// Signed storage of residue
-	private int residue;
+	private long residue;
 	
 	final static Random gen = new Random();
 	
@@ -56,7 +56,7 @@ public class SetSolution implements Solution{
 	 * want to do the linear time process of going down the list of values
 	 * to calculate it.
 	 */
-	private SetSolution(long[] nums, int[] S, int res){
+	private SetSolution(long[] nums, int[] S, long res){
 		this.nums=nums;
 		this.S=S;
 		this.residue=res;
@@ -68,12 +68,12 @@ public class SetSolution implements Solution{
 	}
 	
 	// Returns a random solution 1 move away
-	public Solution rand_move(){
+	public SetSolution rand_move(){
 		// Make a copy of the solution sets
 		int[] newS = new int[S.length];
 		System.arraycopy(S, 0, newS, 0, S.length);
 		// Make a copy of the residue
-		int newRes = residue;
+		long newRes = residue;
 		// Find the element to switch sets
 		int to_flip = gen.nextInt(S.length);
 		// Move it to the other set, and update the residue

@@ -1,4 +1,4 @@
-function [p1] = visualize(d)
+function [final] = visualize(d,unit, bool)
     s = size(d,1);
     p1 = [];
     p2 = [];
@@ -26,19 +26,53 @@ function [p1] = visualize(d)
     p2_avg = sum(p2)/size(p2,1)
     p3_avg = sum(p3)/size(p3,1)
     p4_avg = sum(p4)/size(p4,1)
+    if unit == "ms"
+        a = "Average Time(ms):";
+        y = "Size of Residue";
+        if bool == "true" 
+            t = "Time Comparison of Random Algorithms (Prepartitioning) + KK";
+        else
+            t = "Time Comparison of Random Algorithms (Standard) + KK";
+        end
+    else
+        a = "Average Residue:";
+        y = "Size of Residue";
+        if bool == "true"
+            t = "Residue Comparison of Random Algorithms (Prepartitioning) + KK";
+        else
+            t = "Residue Comparison of Random Algorithms (Standard) + KK";
+        end
+    end
+    
+    s1 = strcat('Random: ', num2str(p1_avg) , " ", unit)
+    s2 = strcat('Hill: ', num2str(p2_avg) , " ", unit)
+    s3 = strcat('Anneal: ', num2str(p3_avg), " ", unit)
+    s4 = strcat('KK: ', num2str(p4_avg), " ", unit)
     
     % now make it pretty
     plot(s,final);
     legend('Repeated Random','Hill Climbing','Simulated Annealing','KarmarkarKarp');
     xlabel('Trial Number');
-    ylabel('Time in Milliseconds');
-    title('Time Comparison of Random Algorithms + KK');
-    text(20.0,30.0,'Average Time:');
-    text(21.0,27.0,'Random: 40.380 ms');
-    text(21.0,24.0,'Hill: 3.0400 ms');
-    text(21.0,21.0,'Anneal: 9 ms');
-    text(21.0,18.0,'KK: 0.24000 ms');
-    % final = final ./ 10;
-    save randlist.mat final
+    ylabel(y);
+    % title('Time Comparison of Random Algorithms + KK (Prepartitioning)');
+    % title('Residue Comparison of Random Algorithms + KK (Prepartitioning)');
+    title(t);
+    text(8,32000000, a);
+    text(10,30000000, s1);
+    text(10,28000000, s2);
+    text(10,26000000, s3);
+    text(10,24000000, s4);
+    
+    % text(16,120, a);
+    % text(17,110, s1);
+    % text(17,100, s2);
+    % text(17,90, s3);
+    % text(17,80, s4);
+    
+    % text(16,120, a);
+    % text(17,110, s1);
+    % text(17,100, s2);
+    % text(17,90, s3);
+    % text(17,80, s4);
     
 end
