@@ -84,11 +84,11 @@ public class RandomAlgs {
     // input file is a list of 100 (unsorted) integers
     public static void main(String[] args) {
         
+         // run kk with input file, print residue
         String filename = args[0];
         KarmarkarKarp first = new KarmarkarKarp(filename);
         Long res = first.residue();
         System.out.println(res);
-        // run kk with input file, print residue
         
         // generate 50 random instances of the problem as described above
         long[][] instances = new long[50][100];
@@ -96,7 +96,6 @@ public class RandomAlgs {
         //note a single Random object is reused here
         long seed = 1000000000000L;
         Random gen = new Random();
-        
         
         
         for (int i=0; i < 50; i++) {
@@ -114,11 +113,10 @@ public class RandomAlgs {
         // for each instance find the result from kk
         Long b1, b2, b3, b4;
         Long b11, b21, b31;
-        System.out.println("----------------------");
+        // System.out.println("----------------------");
         
         long prev;
         long c;
-        // int[][] times = new int[50][100];
         
         for (int i=0; i < 50; i++) {
             prev = System.currentTimeMillis();
@@ -147,17 +145,14 @@ public class RandomAlgs {
             b4 = c - prev;
             // System.out.println(res2);
             
-            System.out.println(b1);
-            System.out.println(b2);
-            System.out.println(b3);
-            System.out.println(b4);
+            // print the run time of each algorithm
+            // System.out.println(b1);
+            // System.out.println(b2);
+            // System.out.println(b3);
+            // System.out.println(b4);
 
         }
-        System.out.println("----------------------");
+        // System.out.println("----------------------");
     }
-	
-    // public static void main(String[] args){
-    //     
-    // }
 	
 }
