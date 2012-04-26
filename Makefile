@@ -1,6 +1,4 @@
-all: kk
-
-kk:
+all: RandomAlgs.java
 	javac RandomAlgs.java
 
 clean: 
