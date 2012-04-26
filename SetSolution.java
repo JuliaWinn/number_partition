@@ -78,7 +78,7 @@ public class SetSolution implements Solution{
 		int to_flip = gen.nextInt(S.length);
 		// Move it to the other set, and update the residue
 		newS[to_flip] *= -1; 
-		newRes += 2*nums[to_flip];
+		newRes += 2*S[to_flip]*nums[to_flip];
 		// 50% of the time, flip a second one
 		if (gen.nextBoolean()){
 			// Find a new position to flip, not the same as the first one
@@ -87,7 +87,7 @@ public class SetSolution implements Solution{
 				to_flip2=gen.nextInt(S.length);
 			// Move it to the other set, and update the residue
 			newS[to_flip2] *= -1; 
-			newRes += 2*nums[to_flip2];
+			newRes += 2*S[to_flip2]*nums[to_flip2];
 		}
 		return new SetSolution(nums, newS, newRes);
 	}

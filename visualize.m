@@ -21,26 +21,29 @@ function [final] = visualize(d,unit, bool)
     end
     s = [1:50];
     final = [p1,p2,p3,p4];
+    % final = [p1,p2,p3];
     
     p1_avg = sum(p1)/size(p1,1)
     p2_avg = sum(p2)/size(p2,1)
     p3_avg = sum(p3)/size(p3,1)
     p4_avg = sum(p4)/size(p4,1)
+    
     if unit == "ms"
         a = "Average Time(ms):";
-        y = "Size of Residue";
+        y = "  ";
         if bool == "true" 
-            t = "Time Comparison of Random Algorithms (Prepartitioning) + KK";
-        else
             t = "Time Comparison of Random Algorithms (Standard) + KK";
+        else
+            t = "Time Comparison of Random Algorithms (Prepartitioning) + KK";
         end
-    else
+    end
+    if unit == "  "
         a = "Average Residue:";
         y = "Size of Residue";
         if bool == "true"
-            t = "Residue Comparison of Random Algorithms (Prepartitioning) + KK";
-        else
             t = "Residue Comparison of Random Algorithms (Standard) + KK";
+        else
+            t = "Residue Comparison of Random Algorithms (Prepartitioning)";
         end
     end
     
@@ -57,22 +60,28 @@ function [final] = visualize(d,unit, bool)
     % title('Time Comparison of Random Algorithms + KK (Prepartitioning)');
     % title('Residue Comparison of Random Algorithms + KK (Prepartitioning)');
     title(t);
-    text(8,32000000, a);
-    text(10,30000000, s1);
-    text(10,28000000, s2);
-    text(10,26000000, s3);
-    text(10,24000000, s4);
+    % text(12,2400000000, a);
+    % text(14,2300000000, s1);
+    % text(14,2200000000, s2);
+    % text(14,2100000000, s3);
+    % text(14,2000000000, s4);
     
-    % text(16,120, a);
-    % text(17,110, s1);
-    % text(17,100, s2);
-    % text(17,90, s3);
-    % text(17,80, s4);
+    % text(23,2300, a);
+    % text(24,2200, s1);
+    % text(24,2100, s2);
+    % text(24,2000, s3);
+    % text(24,1900, s4);
+    % 
+    text(16,120, a);
+    text(17,110, s1);
+    text(17,100, s2);
+    text(17,90, s3);
+    text(17,80, s4);
     
-    % text(16,120, a);
-    % text(17,110, s1);
-    % text(17,100, s2);
-    % text(17,90, s3);
-    % text(17,80, s4);
+    % text(16,35, a);
+    % text(17,33, s1);
+    % text(17,31, s2);
+    % text(17,29, s3);
+    % text(17,27, s4);
     
 end

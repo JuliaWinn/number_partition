@@ -48,7 +48,7 @@ public class PrepartitionSolution implements Solution{
 		// Find the index and value to switch to
 		int flip_index = gen.nextInt(nums.length);
 		int new_id = P[flip_index];
-		while (new_id == flip_index)
+		while (new_id == P[flip_index])
 			new_id = gen.nextInt(nums.length);
 		
 		newP[flip_index]=new_id;
