@@ -1,5 +1,5 @@
 import java.util.Random;
-import java.io.File;
+import java.io.*;
 
 
 public class RandomAlgs {
@@ -95,11 +95,14 @@ public class RandomAlgs {
         
         //note a single Random object is reused here
         long seed = 1000000000000L;
-        Random gen = new Random(seed);
+        Random gen = new Random();
+        
+        
         
         for (int i=0; i < 50; i++) {
             for (int j=0; j < 100; j++) {
                 long inst = gen.nextLong();
+                inst %= seed;
                 if (inst < 0) {
                     inst *= -1;
                 }
@@ -109,37 +112,46 @@ public class RandomAlgs {
         
         
         // for each instance find the result from kk
-        Long b1, b2, b3;
+        Long b1, b2, b3, b4;
+        Long b11, b21, b31;
         System.out.println("----------------------");
         
-        
-        long next;
         long prev;
+        long c;
         // int[][] times = new int[50][100];
         
         for (int i=0; i < 50; i++) {
             prev = System.currentTimeMillis();
-            // System.out.println(prev);
-            b1 = rep_random(false, 25000, instances[i]);
+            
+            b11 = rep_random(true, 25000, instances[i]);
+            c = System.currentTimeMillis();
+            b1 = c - prev;
+            prev = c;
+            System.out.println(b11);
+            
+            b21 = hill_climb(true, 25000, instances[i]);
+            c = System.currentTimeMillis();
+            b2 = c - prev;
+            prev = c;
+            System.out.println(b21);
+            
+            b31 = sim_annealing(true, 25000, instances[i]);
+            c = System.currentTimeMillis();
+            b3 = c - prev;
+            prev = c;
+            System.out.println(b31);
+            
+            KarmarkarKarp kk = new KarmarkarKarp(instances[i]);
+            Long res2 = kk.residue();
+            c = System.currentTimeMillis();
+            b4 = c - prev;
+            System.out.println(res2);
+            
             // System.out.println(b1);
-            b1 = System.currentTimeMillis();
-            System.out.println(b1-prev);
-            prev = b1;
-            b2 = hill_climb(false, 25000, instances[i]);
-            b2 = System.currentTimeMillis();
-            System.out.println(b2-prev);
-            prev = b2;
             // System.out.println(b2);
-            b3 = sim_annealing(false, 25000, instances[i]);
-            b3 = System.currentTimeMillis();
-            System.out.println(b3-prev);
-            prev = b3;
             // System.out.println(b3);
-            // KarmarkarKarp kk = new KarmarkarKarp(instances[i]);
-            // Long res2 = kk.residue();
-            // res2 = System.currentTimeMillis();
-            // System.out.println(res2-prev);
-            // System.out.println(res2);
+            // System.out.println(b4);
+
         }
         System.out.println("----------------------");
 	}
